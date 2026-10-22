@@ -142,7 +142,7 @@ PostgreSQL and Kafka do not need to be installed separately because they are pro
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/smart-contract-monitor.git
+git clone https://github.com/Ayman-Saki/smart-contract-monitor.git
 cd smart-contract-monitor
 ```
 
