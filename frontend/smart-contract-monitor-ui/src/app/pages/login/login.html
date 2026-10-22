@@ -1,0 +1,219 @@
+<div class="login-page">
+
+  <!-- LEFT SIDE -->
+  <section class="login-section">
+
+    <div class="login-container">
+
+      <!-- LOGO -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M4 7l8-4 8 4-8 4-8-4z"></path>
+            <path d="M4 12l8 4 8-4"></path>
+            <path d="M4 17l8 4 8-4"></path>
+          </svg>
+        </div>
+
+        <span>Smart Contract Monitor</span>
+      </div>
+
+
+      <!-- TITLE -->
+      <div class="login-header">
+        <h1>Sign in to your account</h1>
+
+        <p>
+          Access your smart contract monitoring dashboard.
+        </p>
+      </div>
+
+
+      <!-- LOGIN FORM -->
+      <form class="login-form" 
+      (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="email">Email</label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="admin@smartcontract.com"
+            [(ngModel)]="email"
+            required
+          />
+        </div>
+
+
+        <div class="form-group">
+          <label for="password">Password</label>
+
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="••••••••"
+            [(ngModel)]="password"
+            required
+            />
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-button"
+          [disabled]="loading"
+        >
+          {{ loading ? 'Signing in...' : 'Sign in' }}
+        </button>
+
+        <p
+            *ngIf="errorMessage"
+            class="error-message"
+        >
+            {{ errorMessage }}
+        </p>
+
+      </form>
+
+
+      <p class="security-message">
+        Secure access protected by JWT authentication
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- RIGHT SIDE -->
+  <section class="visual-section">
+
+    <div class="grid-background"></div>
+
+    <div class="visual-content">
+
+      <div class="visual-heading">
+        <span class="eyebrow">
+          SMART CONTRACT OBSERVATORY
+        </span>
+
+        <h2>
+          Monitor blockchain activity with intelligent insights.
+        </h2>
+
+        <p>
+          Track contract events, detect unusual activity and understand
+          blockchain behavior through AI-generated summaries.
+        </p>
+      </div>
+
+
+      <!-- MOCK DASHBOARD -->
+      <div class="dashboard-preview">
+
+        <div class="preview-header">
+
+          <div>
+            <span class="preview-label">
+              LIVE MONITORING
+            </span>
+
+            <h3>Smart Contract Activity</h3>
+          </div>
+
+          <span class="live-badge">
+            <span class="live-dot"></span>
+            Active
+          </span>
+
+        </div>
+
+
+        <div class="preview-stats">
+
+          <div class="preview-stat">
+            <span>Total Events</span>
+            <strong>128</strong>
+          </div>
+
+          <div class="preview-stat">
+            <span>Unusual Events</span>
+            <strong>07</strong>
+          </div>
+
+          <div class="preview-stat">
+            <span>Critical Events</span>
+            <strong>02</strong>
+          </div>
+
+        </div>
+
+
+        <div class="preview-events">
+
+          <div class="preview-event">
+            <div class="event-icon">
+              T
+            </div>
+
+            <div class="event-info">
+              <strong>Transfer</strong>
+              <span>Block #8683453</span>
+            </div>
+
+            <span class="status normal">
+              Normal
+            </span>
+          </div>
+
+
+          <div class="preview-event">
+            <div class="event-icon">
+              A
+            </div>
+
+            <div class="event-info">
+              <strong>Approval</strong>
+              <span>Block #8683450</span>
+            </div>
+
+            <span class="status unusual">
+              Unusual
+            </span>
+          </div>
+
+
+          <div class="preview-event">
+            <div class="event-icon">
+              I
+            </div>
+
+            <div class="event-info">
+              <strong>Initialized</strong>
+              <span>Block #6182831</span>
+            </div>
+
+            <span class="status normal">
+              Normal
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

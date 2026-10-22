@@ -1,0 +1,621 @@
+<div class="dashboard-page">
+
+  <!-- ================================
+       TOP NAVIGATION
+  ================================= -->
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+
+        <svg
+          viewBox="0 0 24 24"
+          width="27"
+          height="27"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path d="M4 7l8-4 8 4-8 4-8-4z"></path>
+          <path d="M4 12l8 4 8-4"></path>
+          <path d="M4 17l8 4 8-4"></path>
+        </svg>
+
+      </div>
+
+      <div class="brand-text">
+        <strong>Smart Contract</strong>
+        <span>Monitor</span>
+      </div>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+      <div class="network-indicator">
+
+        <span class="network-dot"></span>
+
+        Sepolia Network
+
+      </div>
+
+
+      <div class="separator"></div>
+
+
+      <div class="admin">
+
+        <div class="admin-avatar">
+          A
+        </div>
+
+        <div class="admin-info">
+          <strong>Administrator</strong>
+          <span>Secure session</span>
+        </div>
+
+      </div>
+
+
+      <button
+        class="logout-button"
+        (click)="logout()"
+        title="Sign out"
+      >
+
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================================
+       MAIN CONTENT
+  ================================= -->
+
+  <main class="dashboard-content">
+
+
+    <!-- PAGE HEADING -->
+
+    <section class="page-heading">
+
+      <div>
+
+        <span class="eyebrow">
+          SMART CONTRACT OBSERVATORY
+        </span>
+
+        <h1>
+          Blockchain activity
+        </h1>
+
+        <p>
+          Monitor smart contract events, unusual behavior
+          and AI-assisted risk analysis.
+        </p>
+
+      </div>
+
+
+      <div class="live-monitor">
+
+        <span class="pulse">
+          <span></span>
+        </span>
+
+        <div>
+          <strong>Live monitoring</strong>
+          <span>Kafka pipeline active</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================================
+         STAT CARDS
+    ================================= -->
+
+    <section
+      class="stats-grid"
+      *ngIf="stats"
+    >
+
+
+      <!-- TOTAL EVENTS -->
+
+      <article class="stat-card">
+
+        <div class="stat-card-top">
+
+          <div class="stat-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="3"
+              ></rect>
+
+              <path d="M8 8h8"></path>
+              <path d="M8 12h8"></path>
+              <path d="M8 16h5"></path>
+            </svg>
+
+          </div>
+
+          <span class="stat-number">
+            01
+          </span>
+
+        </div>
+
+
+        <span class="stat-label">
+          Total events
+        </span>
+
+        <strong class="stat-value">
+          {{ stats.totalEvents }}
+        </strong>
+
+        <p>
+          Events recorded from monitored contracts
+        </p>
+
+      </article>
+
+
+
+      <!-- UNUSUAL EVENTS -->
+
+      <article class="stat-card">
+
+        <div class="stat-card-top">
+
+          <div class="stat-icon warning">
+
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M10.3 2.9L1.8 17a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 2.9a2 2 0 0 0-3.4 0z"
+              ></path>
+
+              <line
+                x1="12"
+                y1="9"
+                x2="12"
+                y2="13"
+              ></line>
+
+              <line
+                x1="12"
+                y1="17"
+                x2="12.01"
+                y2="17"
+              ></line>
+            </svg>
+
+          </div>
+
+          <span class="stat-number">
+            02
+          </span>
+
+        </div>
+
+
+        <span class="stat-label">
+          Unusual events
+        </span>
+
+        <strong class="stat-value">
+          {{ stats.unusualEvents }}
+        </strong>
+
+        <p>
+          Events requiring additional attention
+        </p>
+
+      </article>
+
+
+
+      <!-- HIGH RISK -->
+
+      <article class="stat-card critical-card">
+
+        <div class="stat-card-top">
+
+          <div class="stat-icon critical">
+
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+              ></path>
+
+              <path d="M12 8v4"></path>
+
+              <path d="M12 16h.01"></path>
+            </svg>
+
+          </div>
+
+          <span class="stat-number">
+            03
+          </span>
+
+        </div>
+
+
+        <span class="stat-label">
+          High / Critical
+        </span>
+
+        <strong class="stat-value">
+          {{ stats.highOrCriticalEvents }}
+        </strong>
+
+        <p>
+          Priority security events detected
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- ================================
+         EVENTS TABLE
+    ================================= -->
+
+    <section class="events-panel">
+
+
+      <!-- TABLE HEADER -->
+
+      <div class="panel-heading">
+
+        <div>
+
+          <span class="section-label">
+            EVENT STREAM
+          </span>
+
+          <h2>
+            Recent blockchain activity
+          </h2>
+
+          <p>
+            Events collected and analyzed by the monitoring pipeline.
+          </p>
+
+        </div>
+
+
+        <div class="event-count">
+
+          <span>
+            {{ events.length }}
+          </span>
+
+          events
+
+        </div>
+
+      </div>
+
+
+
+      <!-- LOADING -->
+
+      <div
+        class="loading-state"
+        *ngIf="loading"
+      >
+
+        <div class="loader"></div>
+
+        <span>
+          Loading blockchain events...
+        </span>
+
+      </div>
+
+
+
+      <!-- EMPTY -->
+
+      <div
+        class="empty-state"
+        *ngIf="!loading && events.length === 0"
+      >
+
+        <div class="empty-icon">
+
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M4 7l8-4 8 4-8 4-8-4z"></path>
+            <path d="M4 12l8 4 8-4"></path>
+            <path d="M4 17l8 4 8-4"></path>
+          </svg>
+
+        </div>
+
+        <h3>No events recorded yet</h3>
+
+        <p>
+          New blockchain events will appear here
+          when the Collector detects them.
+        </p>
+
+      </div>
+
+
+
+      <!-- TABLE -->
+
+      <div
+        class="table-wrapper"
+        *ngIf="!loading && events.length > 0"
+      >
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Event
+              </th>
+
+              <th>
+                Block
+              </th>
+
+              <th>
+                Network
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                Severity
+              </th>
+
+              <th>
+                Timestamp
+              </th>
+
+              <th></th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let event of events"
+              (click)="openEvent(event.id)"
+            >
+
+
+              <!-- EVENT -->
+
+              <td>
+
+                <div class="event-name-cell">
+
+                  <div class="event-letter">
+                    {{ getInitial(event.eventName) }}
+                  </div>
+
+                  <div>
+
+                    <strong>
+                      {{ event.eventName }}
+                    </strong>
+
+                    <span class="tx-hash">
+                      {{ event.transactionHash | slice:0:12 }}...
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+
+              <!-- BLOCK -->
+
+              <td>
+
+                <span class="block-number">
+                  #{{ event.blockNumber }}
+                </span>
+
+              </td>
+
+
+
+              <!-- NETWORK -->
+
+              <td>
+
+                <div class="network-cell">
+
+                  <span class="small-network-dot"></span>
+
+                  {{ event.blockchainType }}
+
+                </div>
+
+              </td>
+
+
+
+              <!-- STATUS -->
+
+              <td>
+
+                <span
+                  class="badge"
+                  [class.normal-badge]="event.status === 'NORMAL'"
+                  [class.unusual-badge]="event.status === 'UNUSUAL'"
+                >
+
+                  {{ event.status }}
+
+                </span>
+
+              </td>
+
+
+
+              <!-- SEVERITY -->
+
+              <td>
+
+                <span
+                  class="severity"
+                  [class.low]="event.severity === 'LOW'"
+                  [class.medium]="event.severity === 'MEDIUM'"
+                  [class.high]="event.severity === 'HIGH'"
+                  [class.critical]="event.severity === 'CRITICAL'"
+                >
+
+                  <span class="severity-dot"></span>
+
+                  {{ event.severity }}
+
+                </span>
+
+              </td>
+
+
+
+              <!-- DATE -->
+
+              <td class="timestamp">
+
+                {{ event.eventTimestamp | date:'MMM d, y' }}
+
+                <span>
+                  {{ event.eventTimestamp | date:'HH:mm:ss' }}
+                </span>
+
+              </td>
+
+
+
+              <!-- ARROW -->
+
+              <td>
+
+                <button
+                  class="row-action"
+                  title="View event"
+                >
+
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline
+                      points="9 18 15 12 9 6"
+                    ></polyline>
+                  </svg>
+
+                </button>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="dashboard-footer">
+
+      <span>
+        Smart Contract Monitor
+      </span>
+
+      <span>
+        Blockchain monitoring • Risk analysis • AI summaries
+      </span>
+
+    </footer>
+
+  </main>
+
+</div>

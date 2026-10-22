@@ -1,0 +1,587 @@
+<div class="detail-page">
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        <svg
+          viewBox="0 0 24 24"
+          width="27"
+          height="27"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path d="M4 7l8-4 8 4-8 4-8-4z"></path>
+          <path d="M4 12l8 4 8-4"></path>
+          <path d="M4 17l8 4 8-4"></path>
+        </svg>
+      </div>
+
+      <div class="brand-text">
+        <strong>Smart Contract</strong>
+        <span>Monitor</span>
+      </div>
+
+    </div>
+
+
+    <button
+      class="back-button"
+      (click)="goBack()"
+    >
+
+      <svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <line
+          x1="19"
+          y1="12"
+          x2="5"
+          y2="12"
+        ></line>
+
+        <polyline
+          points="12 19 5 12 12 5"
+        ></polyline>
+      </svg>
+
+      Back to dashboard
+
+    </button>
+
+  </header>
+
+
+  <main class="detail-content">
+
+
+    <!-- LOADING -->
+
+    <div
+      class="loading-state"
+      *ngIf="loading"
+    >
+
+      <div class="loader"></div>
+
+      <span>
+        Loading event details...
+      </span>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      class="error-state"
+      *ngIf="!loading && errorMessage"
+    >
+
+      {{ errorMessage }}
+
+    </div>
+
+
+    <!-- EVENT CONTENT -->
+
+    <ng-container
+      *ngIf="!loading && event"
+    >
+
+
+      <!-- HEADING -->
+
+      <section class="event-heading">
+
+        <div>
+
+          <span class="eyebrow">
+            BLOCKCHAIN EVENT
+          </span>
+
+          <div class="event-title-row">
+
+            <div class="event-icon">
+              {{ event.eventName.charAt(0) }}
+            </div>
+
+            <div>
+
+              <h1>
+                {{ event.eventName }}
+              </h1>
+
+              <span class="event-id">
+                Event #{{ event.id }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="event-badges">
+
+          <span
+            class="status-badge"
+            [class.normal]="event.status === 'NORMAL'"
+            [class.unusual]="event.status === 'UNUSUAL'"
+          >
+            {{ event.status }}
+          </span>
+
+          <span
+            class="severity-badge"
+            [class.low]="event.severity === 'LOW'"
+            [class.medium]="event.severity === 'MEDIUM'"
+            [class.high]="event.severity === 'HIGH'"
+            [class.critical]="event.severity === 'CRITICAL'"
+          >
+            {{ event.severity }}
+          </span>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- MAIN GRID -->
+
+      <section class="detail-grid">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="main-column">
+
+
+          <!-- TRANSACTION -->
+
+          <article class="panel">
+
+            <div class="panel-title">
+
+              <span class="panel-number">
+                01
+              </span>
+
+              <div>
+
+                <h2>
+                  Transaction information
+                </h2>
+
+                <p>
+                  Blockchain execution details
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+              <div class="info-item full-width">
+
+                <span>
+                  Transaction hash
+                </span>
+
+                <strong class="monospace">
+                  {{ event.transactionHash }}
+                </strong>
+
+              </div>
+
+
+              <div class="info-item">
+
+                <span>
+                  Block number
+                </span>
+
+                <strong>
+                  #{{ event.blockNumber }}
+                </strong>
+
+              </div>
+
+
+              <div class="info-item">
+
+                <span>
+                  Network
+                </span>
+
+                <strong class="network">
+
+                  <span class="network-dot"></span>
+
+                  {{ event.blockchainType }}
+
+                </strong>
+
+              </div>
+
+
+              <div class="info-item">
+
+                <span>
+                  Date
+                </span>
+
+                <strong>
+                  {{ event.eventTimestamp | date:'MMM d, y' }}
+                </strong>
+
+              </div>
+
+
+              <div class="info-item">
+
+                <span>
+                  Time
+                </span>
+
+                <strong>
+                  {{ event.eventTimestamp | date:'HH:mm:ss' }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- TRANSFER INFO -->
+
+          <article class="panel">
+
+            <div class="panel-title">
+
+              <span class="panel-number">
+                02
+              </span>
+
+              <div>
+
+                <h2>
+                  Event data
+                </h2>
+
+                <p>
+                  Addresses and token information
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="address-block">
+
+              <span>
+                From
+              </span>
+
+              <strong class="monospace">
+                {{ event.fromAddress || 'Not applicable' }}
+              </strong>
+
+            </div>
+
+
+            <div class="flow-line">
+
+              <span></span>
+
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line
+                  x1="12"
+                  y1="5"
+                  x2="12"
+                  y2="19"
+                ></line>
+
+                <polyline
+                  points="19 12 12 19 5 12"
+                ></polyline>
+              </svg>
+
+            </div>
+
+
+            <div class="address-block">
+
+              <span>
+                To
+              </span>
+
+              <strong class="monospace">
+                {{ event.toAddress || 'Not applicable' }}
+              </strong>
+
+            </div>
+
+
+            <div class="amount-box">
+
+              <span>
+                Amount
+              </span>
+
+              <strong>
+                {{
+                  event.amount !== null
+                    ? event.amount
+                    : 'Not applicable'
+                }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- RAW DATA -->
+
+          <article class="panel">
+
+            <div class="panel-title">
+
+              <span class="panel-number">
+                03
+              </span>
+
+              <div>
+
+                <h2>
+                  Raw blockchain data
+                </h2>
+
+                <p>
+                  Original event payload
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="raw-data">
+
+              {{
+                event.rawData
+                  || 'No raw data available'
+              }}
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <aside class="side-column">
+
+
+          <!-- AI SUMMARY -->
+
+          <article class="ai-panel">
+
+            <div class="ai-header">
+
+              <div class="ai-icon">
+
+                <svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z"
+                  ></path>
+
+                  <path
+                    d="M9 22h6"
+                  ></path>
+
+                  <path
+                    d="M10 18v2"
+                  ></path>
+
+                  <path
+                    d="M14 18v2"
+                  ></path>
+                </svg>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  AI ANALYSIS
+                </span>
+
+                <h2>
+                  Intelligent summary
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="ai-summary"
+              *ngIf="event.summary"
+            >
+
+              {{ event.summary }}
+
+            </div>
+
+
+            <div
+              class="no-summary"
+              *ngIf="!event.summary"
+            >
+
+              No AI summary has been generated
+              for this event.
+
+            </div>
+
+
+            <div
+              class="ai-model"
+              *ngIf="event.summaryModel"
+            >
+
+              <span>
+                Generated with
+              </span>
+
+              <strong>
+                {{ event.summaryModel }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- CONTRACT -->
+
+          <article class="contract-panel">
+
+            <span class="section-label">
+              SMART CONTRACT
+            </span>
+
+            <h3>
+              Monitored contract
+            </h3>
+
+
+            <div class="contract-address">
+
+              <span>
+                Address
+              </span>
+
+              <strong class="monospace">
+                {{ event.contractAddress }}
+              </strong>
+
+            </div>
+
+
+            <div class="contract-network">
+
+              <span class="network-dot"></span>
+
+              {{ event.blockchainType }}
+
+            </div>
+
+          </article>
+
+
+
+          <!-- RISK -->
+
+          <article class="risk-panel">
+
+            <span class="section-label">
+              SECURITY CLASSIFICATION
+            </span>
+
+
+            <div class="risk-row">
+
+              <span>
+                Status
+              </span>
+
+              <strong>
+                {{ event.status }}
+              </strong>
+
+            </div>
+
+
+            <div class="risk-row">
+
+              <span>
+                Severity
+              </span>
+
+              <strong>
+                {{ event.severity }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+        </aside>
+
+      </section>
+
+    </ng-container>
+
+  </main>
+
+</div>
